@@ -15,8 +15,8 @@
     align-items: center;
 }
 
-nav ul.navbar-nav, li.nav-item {
-    color: #191C23;
+.navitem {
+    color: #191C23 !important;
 } 
 
 body {
@@ -110,10 +110,10 @@ footer {
     width: 100%;
     text-align: center;
     justify-content: center;
-    background-color: #343C3F;
+    background-color: #8A96A3;
 }
 a {
-    color: #191C23;
+    color: #6F777D;
     text-decoration: none;
 }
 
@@ -137,6 +137,14 @@ div.password label {
 
 input, label {
     display: block;
+}
+
+label {
+    margin-top: 1.5rem;
+}
+
+button {
+    margin-top: 2rem;
 }
 
 /*headers*/
@@ -168,3 +176,14 @@ h3 {
 #card4 {
     grid-area: card4;
 }
+
+.fox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+ img.fox {
+    margin-top: 2rem;
+    width: 50%;
+    height: 40%;
+ }
