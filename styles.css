@@ -44,7 +44,6 @@
     border: 2px solid #868686;
     perspective: 1000px;
     border-radius: 20px;
-    -moz-outline-radius: 20px;
     /* overflow: hidden; */
 }
 
