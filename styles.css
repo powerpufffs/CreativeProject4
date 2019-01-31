@@ -1,0 +1,38 @@
+.generalPageWrapper {
+    /* aesthetics */
+    background-color: transparent;
+    border-color: black;
+    border-style: solid;
+    border-width: 2px;
+    height: 50vh;
+    
+    /* grid settings */
+    display: grid;
+    grid-template-columns:
+        minmax(5%, 1fr)
+        minmax(80%, 90%)
+        minmax(5%, 1fr);
+    justify-items: center;
+    align-items: center;
+}
+
+.cardLayoutWrapper {
+    /* aesthetics */
+    border-color: black;
+    border-style: solid;
+    border-width: 2px;
+    background-color: grey;
+    text-align: center;
+   
+    /* self grid settings */
+    grid-column-start: 2;
+    width: 50vw;
+
+    /* nested grid */
+    display: grid;
+    grid-template:
+    1fr
+    1fr
+    1fr / 1fr 1fr 1fr;
+    grid-gap: 1rem;
+}
