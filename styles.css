@@ -89,3 +89,33 @@
     width: 80%;
     height: 80%;
 }
+
+
+/*Footer Styling*/
+footer {
+    position: fixed;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+    background-color: #3E606F;
+}
+a {
+    color: #193441;
+    text-decoration: none;
+}
+
+/*Login Page Styling*/
+div.username label {
+    width: 6rem;
+}
+
+div.password label {
+    width: 6rem;
+}
+
+input, label {
+    display: block;
+}
