@@ -52,6 +52,7 @@ body {
     justify-self: center;
     align-self: center;
     background-color: transparent;
+   
     width: 200px;
     height: 300px;
     perspective: 1000px;
@@ -67,7 +68,7 @@ body {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
-.flip-card:hover .flip-card-inner {
+.flip-card:active .flip-card-inner {
     transform: rotateY(180deg);
 }
 
@@ -80,6 +81,9 @@ body {
 }
 
 .flip-card-front {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: #bbb;
     color: black;
     z-index: 2;
