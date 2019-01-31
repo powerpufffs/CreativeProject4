@@ -1,296 +1,48 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Nice Material Inspried Card Slider Demo</title>
-<link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
-<style>
-body {
-  background: #D18B49;
-  color: rgba(0, 0, 0, 0.6);
-  font-family: "Roboto", sans-serif;
-  font-size: 14px;
-  line-height: 1.6em;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-transition: 0.5s ease;
-  transition: 0.5s ease;
-}
-
-.btn {
-  border-radius: 2px;
-  padding: 8px 12px;
-  color: #D18B49;
-  font-size: 14px;
-  font-weight: 500;
-  text-decoration: none;
-  text-transform: uppercase;
-  -webkit-transition: 0.5s ease;
-  transition: 0.5s ease;
-}
-
-.card {
-  background: #FFFFFF;
-  max-width: 400px;
-  margin: 150px auto;
-  border-radius: 12px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-  box-sizing: border-box;
-  padding: 48px;
-  text-align: center;
-}
-
-.slides {
-  position: relative;
-  overflow: hidden;
-  -webkit-transition: 0.5s ease;
-  transition: 0.5s ease;
-}
-
-.slide {
-  position: absolute;
-  top: 0;
-  left: 0;
-  opacity: 0;
-  visibility: hidden;
-  -webkit-transition: 0.5s ease;
-  transition: 0.5s ease;
-}
-
-.slide.active {
-  opacity: 1;
-  visibility: visible;
-}
-
-.thumbnail { margin: 0 0 48px; }
-
-.title {
-  margin: 0 0 12px;
-  color: #D18B49;
-  font-size: 24px;
-  -webkit-transition: 0.5s ease;
-  transition: 0.5s ease;
-}
-
-.description { margin: 0 0 48px; }
-
-.footer {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  margin: 0 -12px -12px;
-}
- [ripple] {
- z-index: 1;
- position: relative;
- overflow: hidden;
-}
-
-[ripple] .ripple {
-  position: absolute;
-  background: #FFFFFF;
-  width: 60px;
-  height: 60px;
-  border-radius: 100%;
-  -webkit-transform: scale(0);
-  -ms-transform: scale(0);
-  transform: scale(0);
-  -webkit-animation: ripple 2s;
-  animation: ripple 2s;
-}
- @-webkit-keyframes 
-ripple {  0% {
- -webkit-transform: scale(0);
- transform: scale(0);
- opacity: 0.2;
-}
- 100% {
- -webkit-transform: scale(20);
- transform: scale(20);
- opacity: 0;
-}
-}
- @keyframes 
-ripple {  0% {
- -webkit-transform: scale(0);
- transform: scale(0);
- opacity: 0.2;
-}
- 100% {
- -webkit-transform: scale(20);
- transform: scale(20);
- opacity: 0;
-}
-}
-</style>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/styles.css">
+    <title>Book of Mormon Challenge</title>
 </head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav">
+                    <li class="nav-item active">
+                      <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.html">Login</a>
+                  </li>
+                    <li class="nav-item">
+                          <a class="nav-link" href="game.html">The Game</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="leaderboard.html">Leaderboard</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="about.html">About the Game</a>
+                    </li>
+              </ul>
+        </div>
+  </nav>
 
-<body><div id="jquery-script-menu">
-<div class="jquery-script-center">
-<ul>
-<li><a href="http://www.jqueryscript.net/angular-tree-dropdown-directive/">Download This Plugin</a></li>
-<li><a href="http://www.jqueryscript.net/">Back To jQueryScript.Net</a></li>
-</ul>
-<div class="jquery-script-ads"><script type="text/javascript"><!--
-google_ad_client = "ca-pub-2783044520727903";
-/* jQuery_demo */
-google_ad_slot = "2780937993";
-google_ad_width = 728;
-google_ad_height = 90;
-//-->
-</script>
-<script type="text/javascript"
-src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-</script></div>
-<div class="jquery-script-clear"></div>
-</div>
-</div>
-<div class="card">
-  <div class="slides">
-    <div slide-id="1" slide-color="#D18B49" class="slide active">
-      <div class="thumbnail"><img src="Stag.svg"/></div>
-      <h1 class="title">The Magnificent Stag</h1>
-      <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
-    </div>
-    <div slide-id="2" slide-color="#542F13" class="slide">
-      <div class="thumbnail"><img src="Bear.svg"/></div>
-      <h1 class="title">The Courageous Bear</h1>
-      <p class="description">Nam tristique porttitor erat sed convallis. Donec id iaculis massa, id pulvinar odio. </p>
-    </div>
-    <div slide-id="3" slide-color="#A5AAAE" class="slide">
-      <div class="thumbnail"><img src="Mouse.svg"/></div>
-      <h1 class="title">The Sneaky Mouse</h1>
-      <p class="description">Ut condimentum facilisis turpis in tincidunt.</p>
-    </div>
-    <div slide-id="4" slide-color="#ED8D1F" class="slide">
-      <div class="thumbnail"><img src="Fox.svg"/></div>
-      <h1 class="title">The Cunning Fox</h1>
-      <p class="description"> Nulla facilisi. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin vulputate massa ut iaculis eleifend. </p>
-    </div>
-    <div slide-id="5" slide-color="#C4C8CB" class="slide">
-      <div class="thumbnail"><img src="Rabbit.svg"/></div>
-      <h1 class="title">The Jumpy Rabbit</h1>
-      <p class="description">Phasellus accumsan nisi ac ex ultrices dignissim. </p>
-    </div>
-  </div>
-  <div class="footer"><a id="prev" href="#" ripple="" ripple-color="#666666" class="btn">Prev</a><a id="next" href="#" ripple="" ripple-color="#666666" class="btn">Next</a></div>
-</div>
-<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script> 
-<script>
-$(document).ready(function() {
-  var getslideHeight = $('.slide.active').height();
+  <h1>Book of Mormon Card Matching Game</h1>
+  <p>The challenge, should you accept it, is to match each card to it's pair and to beat your personal time.</p>
+  <img src="line-drawing-book-of-mormon-694939.html">
 
-  $('.slides').css({
-    height: getslideHeight
-  });
 
-  function calcslideHeight() {
-    getslideHeight = $('.slide.active').height();
 
-    $('.slides').css({
-      height: getslideHeight
-    });
-  }
+  <footer><a href="https://github.com/littlemisshartman/CreativeProject1.git">https://github.com/littlemisshartman/CreativeProject1.git</a></footer>
 
-  function animateContentColor() {
-    var getslideColor = $('.slide.active').attr('slide-color');
-
-    $('body').css({
-      background: getslideColor
-    });
-
-    $('.title').css({
-      color: getslideColor
-    });
-
-    $('.btn').css({
-      color: getslideColor
-    });
-  }
-
-  var slideItem = $('.slide'),
-    slideCurrentItem = slideItem.filter('.active');
-
-  $('#next').on('click', function(e) {
-    e.preventDefault();
-
-    var nextItem = slideCurrentItem.next();
-
-    slideCurrentItem.removeClass('active');
-
-    if (nextItem.length) {
-
-      slideCurrentItem = nextItem.addClass('active');
-    } else {
-      slideCurrentItem = slideItem.first().addClass('active');
-    }
-
-    calcslideHeight();
-    animateContentColor();
-  });
-
-  $('#prev').on('click', function(e) {
-    e.preventDefault();
-
-    var prevItem = slideCurrentItem.prev();
-
-    slideCurrentItem.removeClass('active');
-
-    if (prevItem.length) {
-      slideCurrentItem = prevItem.addClass('active');
-    } else {
-      slideCurrentItem = slideItem.last().addClass('active');
-    }
-
-    calcslideHeight();
-    animateContentColor();
-  });
-
-  // Ripple
-  $('[ripple]').on('click', function(e) {
-    var rippleDiv = $('<div class="ripple" />'),
-      rippleSize = 60,
-      rippleOffset = $(this).offset(),
-      rippleY = e.pageY - rippleOffset.top,
-      rippleX = e.pageX - rippleOffset.left,
-      ripple = $('.ripple');
-
-    rippleDiv.css({
-      top: rippleY - (rippleSize / 2),
-      left: rippleX - (rippleSize / 2),
-      background: $(this).attr("ripple-color")
-    }).appendTo($(this));
-
-    window.setTimeout(function() {
-      rippleDiv.remove();
-    }, 1900);
-  });
-});
-</script><script type="text/javascript">
-
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-36251023-1']);
-  _gaq.push(['_setDomainName', 'jqueryscript.net']);
-  _gaq.push(['_trackPageview']);
-
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-
-</script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+  
 </body>
 </html>
