@@ -1,0 +1,91 @@
+.generalPageWrapper {
+    /* aesthetics */
+    background-color: transparent;
+    border-color: black;
+    border-style: solid;
+    border-width: 2px;
+    height: 50vh;
+
+    /* grid settings */
+    display: grid;
+    grid-template-columns:
+        minmax(5%, 1fr) minmax(80%, 90%) minmax(5%, 1fr);
+    justify-items: center;
+    align-items: center;
+}
+
+.cardLayoutWrapper {
+    /* aesthetics */
+    border-color: black;
+    border-style: solid;
+    border-width: 2px;
+    background-color: #f0edbb;
+    text-align: center;
+
+    /* self grid settings */
+    grid-column-start: 2;
+    width: 100%;
+    height: 100%;
+
+    /* nested grid */
+    display: grid;
+    grid-template:
+        1fr 1fr 1fr / 1fr 1fr 1fr;
+    grid-gap: 1rem;
+}
+
+/* Cards */
+
+/* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
+.flip-card {
+    background-color: transparent;
+    width: 100%;
+    height: 100%;
+    border: 2px solid #868686;
+    perspective: 1000px;
+    border-radius: 20px;
+    -moz-outline-radius: 20px;
+    /* overflow: hidden; */
+}
+
+/* This container is needed to position the front and back side */
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+/* Do an horizontal flip when you move the mouse over the flip box container */
+.flip-card:active .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+/* Position the front and back side */
+.flip-card-front,
+.flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+}
+
+/* Style the front side (fallback if image is missing) */
+.flip-card-front {
+    background-color: #009393bd;
+    color: black;
+}
+
+/* Style the back side */
+.flip-card-back {
+    background-color: #bbb;
+    color: white;
+    transform: rotateY(180deg);
+}
+
+.avatarStyling {
+    width: 80%;
+    height: 80%;
+}
