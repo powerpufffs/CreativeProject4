@@ -5,7 +5,7 @@
     border-style: solid; */
     border-width: 2px;
     height: 100vh;
-    background-color: #cfcfb2;
+    background-color: #191C23;
 
     /* grid settings */
     display: grid;
@@ -15,8 +15,13 @@
     align-items: center;
 }
 
+nav ul.navbar-nav, li.nav-item {
+    color: #191C23;
+} 
+
 body {
-    background-color: #b4b493;
+    color: #8A96A3;
+    background-color: #191C23;
 }
 
 .cardLayoutWrapper {
@@ -101,16 +106,25 @@ footer {
     width: 100%;
     text-align: center;
     justify-content: center;
-    background-color: #3E606F;
+    background-color: #343C3F;
 }
 a {
-    color: #193441;
+    color: #191C23;
     text-decoration: none;
 }
 
 /*Login Page Styling*/
 div.username label {
     width: 6rem;
+
+}
+div.username {
+    width: 100%;
+    text-align: center;
+}
+div.password {
+    width: 100%;
+    text-align: center;
 }
 
 div.password label {
@@ -119,6 +133,15 @@ div.password label {
 
 input, label {
     display: block;
+}
+
+/*headers*/
+h1 {
+    margin-top: 4rem;
+}
+
+h3 {
+    margin-top: 1rem;
 }
 
 /* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
