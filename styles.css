@@ -118,11 +118,11 @@ a {
 }
 
 /*Login Page Styling*/
-div.username label {
+div.usernameEmail label {
     width: 6rem;
 
 }
-div.username {
+div.usernameEmail {
     width: 100%;
     text-align: center;
 }
@@ -145,6 +145,21 @@ label {
 
 button {
     margin-top: 2rem;
+}
+
+p.validity {
+    display: block;
+    padding: 1rem;
+    text-align: left;
+    float: left;
+}
+
+.valid {
+    color:green;
+}
+
+.invalid {
+    color: red;
 }
 
 /*headers*/
@@ -182,7 +197,7 @@ h3 {
     justify-content: center;
     align-items: center;
 }
- img.fox {
+img.fox {
     margin-top: 2rem;
     width: 50%;
     height: 40%;
