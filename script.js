@@ -1,19 +1,19 @@
 document.getElementById('usernameButton').addEventListener('click', function(event) {
-    document.getElementById('topInput').innerHTML = '<input type="text" id="usernameEmailInput" class="inputStyling" placeholder="Username">'
+    document.getElementById('topInput').innerHTML = '<input type="text" id="usernameEmailInput" class="inputStyling" placeholder="Username" value="username">'
     document.getElementById('usernameEmail').style.visibility = "visible";
     document.getElementById('passwordDiv').style.visibility = "visible";
     document.getElementById('logInDiv').style.visibility = "visible";
 });
 
 document.getElementById('emailButton').addEventListener('click', function(event) {
-    document.getElementById('topInput').innerHTML = '<input type="text" id="usernameEmailInput" class="inputStyling" placeholder="Email Address">'
+    document.getElementById('topInput').innerHTML = '<input type="text" id="usernameEmailInput" class="inputStyling" placeholder="Email Address" value="email">'
     document.getElementById('usernameEmail').style.visibility = "visible";
     document.getElementById('passwordDiv').style.visibility = "visible";
     document.getElementById('logInDiv').style.visibility = "visible";
 })
 
-document.getElementById('logIn').addEventListener('click', function(event) {
-    if (document.getElementById('input').innerText === "Email") {
+document.getElementById('login').addEventListener('click', function(event) {
+    if (document.getElementById('input').value == "email") {
         var emailAddress = document.getElementById('usernameEmailInput').value;
         console.log(`Email Input is ${emailAddress}.`);
         const accessKey = "81a42f979a60a5020baa7b1ec7c058e5";
@@ -37,7 +37,7 @@ document.getElementById('logIn').addEventListener('click', function(event) {
                 document.getElementById('validity').innerHTML = results;
             });
 
-    } else if (document.getElementById('input').value == "Username") {
+    } else if (document.getElementById('input').value == "username") {
         value  = document.getElementById('usernameEmailInput').value;
         console.log(`Username Input is ${value}.`);
     } else {
