@@ -1,0 +1,138 @@
+/*Footer Styling*/
+footer {
+    position: fixed;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+    background-color: #8A96A3;
+}
+
+a {
+    color: #6F777D;
+    text-decoration: none;
+}
+
+/* CSS Grid Layout */
+
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.grandWrapper {
+    display: grid;
+    height: auto;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    grid-template:
+    1fr
+    5fr
+    1fr
+    /   minmax(35%, 1fr) minmax(20%, 70%) minmax(35%, 1fr);
+}
+
+.container {
+    background-color: transparent;
+    grid-column-start: 2;
+    grid-row-start: 2;
+
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+
+    display: grid;
+    grid-template-rows: auto auto;
+}
+
+.upper {
+}
+
+.lower {
+}
+
+/*Login Page Styling*/
+
+#loginTitle {
+    margin-top: 0;
+    text-align: left;
+}
+
+div.usernameEmail label {
+    height: 0;
+}
+
+div.usernameEmail {
+    width: 100%;
+    text-align: center;
+}
+
+.inputStyling {
+    border-style: none;
+    border-color: transparent;
+    border-bottom: 1px solid;
+}
+
+input::placeholder {
+    padding-left: 0.5rem;
+}
+
+div.password {
+    width: 100%;
+    text-align: center;
+}
+
+div.password label {
+    width: 6rem;
+}
+
+input, label {
+    display: block;
+    width: 100%;
+    height: 60px;
+}
+
+label {
+    margin-top: 0;
+}
+
+button {
+    margin-top: 0;
+}
+
+#login {
+    margin-top: 1rem;
+    width: 100% !important;
+    height: 60px !important;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+p.validity {
+    display: block;
+    padding: 1rem;
+    text-align: left;
+    float: left;
+}
+
+.valid {
+    color:green;
+}
+
+.invalid {
+    color: red;
+}
+
+/*headers*/
+h1 {
+    margin-top: 2rem;
+}
+
+h3 {
+    margin-top: 1rem;
+}
