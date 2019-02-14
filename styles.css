@@ -145,13 +145,36 @@ label {
 
 button {
     margin-top: 2rem;
+    margin: .5rem;
+    margin-right: .2rem;
+    border-radius: 7px;
 }
 
 p.validity {
     display: block;
-    padding: 1rem;
+    padding: .5rem;
     text-align: left;
-    float: left;
+    font-size: .6rem;
+}
+
+.validEmail {
+    outline: none;
+    border-color: green;
+    box-shadow: 0 0 10px green;
+    border: 2px solid #dadada;
+    border-radius: 7px;
+}
+
+.invalidEmail {
+    border: 2px solid #dadada;
+    border-radius: 7px;
+    outline: none;
+    border-color: red;
+    box-shadow: 0 0 10px red;
+}
+
+input {
+    border-radius: 7px;
 }
 
 .valid {
@@ -160,6 +183,10 @@ p.validity {
 
 .invalid {
     color: red;
+}
+
+.submit {
+    margin: 2rem;
 }
 
 /*headers*/
