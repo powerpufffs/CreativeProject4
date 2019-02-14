@@ -26,8 +26,13 @@ document.getElementById('logIn').addEventListener('click', function(event) {
                 console.log(json);
                 if (json.score >= 0.8 || json.format_valid === true) {
                     results += "<span class='valid'> Valid </span>";
+                    document.getElementById('usernameEmailInput').classList.add("validEmail");
+                    document.getElementById('usernameEmailInput').classList.remove('invalidEmail');
+
                 } else {
-                    results += "<span class='invalid'>Invalid email address.</span>";
+                    results += "<span class='invalid'>Please enter a valid email address.</span>";
+                    document.getElementById('usernameEmailInput').classList.add("invalidEmail");
+                    document.getElementById('usernameEmailInput').classList.remove('validEmail');
                 }
                 document.getElementById('validity').innerHTML = results;
             });
@@ -38,5 +43,7 @@ document.getElementById('logIn').addEventListener('click', function(event) {
     } else {
         //throw error message
         console.log("error!!")
+        let results ="<span class='invalid'>Please enter a valid email address.</span>";
+        document.getElementById('validity').innerHTML = results;
     }
 })
