@@ -35,24 +35,29 @@
             <h1>Login</h1>
             <p>Create a profile to save your scores!</p>
 
-            <div class="username">
-                  <label for="username">Username</label>
-                  <input type="text" id="username">
+            <p>Log in with
+                  <button id="usernameButton">Username</button>
+                  <button id="emailButton">Email</button>
+            </p>
+
+            <div class="usernameEmail" id="usernameEmail" style="visibility: hidden">
+                  <label id="input" for="usernameEmailInput"></label>
+                  <input type="text" id="usernameEmailInput">
             </div>
 
-            <div class="password">
+            <div class="password" id="passwordDiv" style="visibility: hidden">
                   <label for="pw">Password</label>
                   <input type="password" id="pw">
             </div>
 
-            <div class="submit">
-                  <button>Log In</button>
-            </div>
+            <div class="submit" id="logInDiv" style="visibility: hidden">
+                  <button id="logIn">Log In</button>
+            </divb>
       </div>
 
 
   <footer><a href="https://github.com/littlemisshartman/CreativeProject1.git">https://github.com/littlemisshartman/CreativeProject1.git</a></footer>
-
+  <script text="type/javascript" src="/script.js"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
