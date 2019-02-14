@@ -1,18 +1,18 @@
 document.getElementById('usernameButton').addEventListener('click', function(event) {
-    document.getElementById('input').innerText = "Username";
+    document.getElementById('topInput').innerHTML = '<input type="text" id="usernameEmailInput" class="inputStyling" placeholder="Username">'
     document.getElementById('usernameEmail').style.visibility = "visible";
     document.getElementById('passwordDiv').style.visibility = "visible";
     document.getElementById('logInDiv').style.visibility = "visible";
 });
 
 document.getElementById('emailButton').addEventListener('click', function(event) {
-    document.getElementById('input').innerText = "Email";
+    document.getElementById('topInput').innerHTML = '<input type="text" id="usernameEmailInput" class="inputStyling" placeholder="Email Address">'
     document.getElementById('usernameEmail').style.visibility = "visible";
     document.getElementById('passwordDiv').style.visibility = "visible";
     document.getElementById('logInDiv').style.visibility = "visible";
 })
 
-document.getElementById('logIn').addEventListener('click', function(event) {
+document.getElementById('login').addEventListener('click', function(event) {
     if (document.getElementById('input').innerText === "Email") {
         var emailAddress = document.getElementById('usernameEmailInput').value;
         console.log(`Email Input is ${emailAddress}.`);
@@ -37,7 +37,7 @@ document.getElementById('logIn').addEventListener('click', function(event) {
                 document.getElementById('validity').innerHTML = results;
             });
 
-    } else if (document.getElementById('input').innerText === "Username") {
+    } else if (document.getElementById('input').value == "Username") {
         value  = document.getElementById('usernameEmailInput').value;
         console.log(`Username Input is ${value}.`);
     } else {
