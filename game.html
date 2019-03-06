@@ -2,10 +2,10 @@
 <html>
 
 <head>
-    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
         crossorigin="anonymous">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="game.scss">
     <title>The Game</title>
 </head>
 
@@ -39,8 +39,32 @@
   <div class="container">
     <h1>Start Matching!</h1>
     <h4>Click and hold to see the magic...</h4>
-
-    <div class="generalPageWrapper">
+    
+    <div id="app">
+        <div class="info">
+            <div :time="time">
+                <span class="label">Time:</span>
+                <span class="value">{{ time }} </span>
+            </div>
+            <div>
+                <span class="label">Turns:</span>
+                <span class="value">{{ turns }}</span>
+            </div>
+        </div>
+        <div class="cards">
+            <div class="card" v-for="card in cards" :class="{ flipped: card.flipped, found: card.found }" @click="flipCard(card)">
+                <div class="back"></div>
+                <div class="front" :style="{ backgroundImage: 'url(' + card.image + ')' }"></div>
+            </div>
+        </div>
+        <div class="splash" v-if="showSplash">
+            <div class="overlay"></div>
+            <div class="content">
+                <div class="title">You won!</div>
+                <div class="score">Score: {{ score }}</div><button class="newGame" @click="resetGame()">New game</button></div>
+        </div>
+    </div>
+    <!-- <div class="generalPageWrapper">
         <div class="cardLayoutWrapper">
             <div class="flip-card">
                 <div class="flip-card-inner" id="card1">
@@ -84,9 +108,11 @@
             </div>
         </div>
     </div>
-    </div>
-    <footer><a href="https://github.com/littlemisshartman/CreativeProject1.git">https://github.com/littlemisshartman/CreativeProject1.git</a></footer>
-
+    </div> -->
+    <footer><a href="https://github.com/powerpufffs/CreativeProject3.git">https://github.com/powerpufffs/CreativeProject3.git</a></footer>
+   
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.8/dist/vue.js"></script>
+    <script src="/game.js"></script>
     <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>

@@ -10,7 +10,10 @@
     /* grid settings */
     display: grid;
     grid-template:
-        minmax(5%, 1fr) minmax(80%, 90%) minmax(5%, 1fr) / minmax(5%, 1fr) minmax(80%, 90%) minmax(5%, 1fr);
+        minmax(5%, 1fr) 
+        minmax(80%, 90%) 
+        minmax(5%, 1fr) 
+        / minmax(5%, 1fr) minmax(80%, 90%) minmax(5%, 1fr);
     justify-items: center;
     align-items: center;
 }
