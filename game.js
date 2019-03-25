@@ -5,144 +5,51 @@ let CardTypes = [
 	{ name: "nodejs", image: "https://worldvectorlogo.com/logos/nodejs-icon.svg" },
 	{ name: "webpack", image: "https://camo.githubusercontent.com/66747a6e05a799aec9c6e04a3e721ca567748e8b/68747470733a2f2f662e636c6f75642e6769746875622e636f6d2f6173736574732f313336353838312f313931383337332f32653035373166612d376462632d313165332d383436352d3839356632393164343366652e706e67" },
 	{ name: "babel", image: "https://babeljs.io/images/logo.svg" },
-	//{ name: "jade", image: "http://jade-lang.com/style/jade-logo-header.svg" },
 ];
 
-// let shuffleCards = () => {
-// 	let cards = [].concat(_.cloneDeep(CardTypes), _.cloneDeep(CardTypes));
-// 	return _.shuffle(cards);
-// }
-
 let shuffleCards = () => {
-    var a = CardTypes
-    var j, x, i;
-    for (i = a.length - 1; i > 0; i--) {
-        j = Math.floor(Math.random() * (i + 1));
-        x = a[i];
-        a[i] = a[j];
-        a[j] = x;
-    }
-    return a;
+	return CardTypes;
 }
 
 let app = new Vue({
-	el: "#app",
+	el: '#app',
 	data: {
-		showSplash: false,
-		cards: [],
-		started: false,
-		startTime: 0,
+		timeElapsed: 0,
 		turns: 0,
-		flipBackTimer: null,
-		timer: null,
-		time: "--:--",
-		score: 0
+		matchedPairs: 0,
+		cards: [],
+		cardClasses: {},
+	},
+	computed: {
+		totalPairs: function() {
+			return cards.length();
+		},
 	},
 	methods: {
 		resetGame() {
-			this.showSplash = false;
-			let cards = shuffleCards();
+			this.cards = shuffleCards();
+			this.cards.forEach((card) => {
+				this.$set(card, 'flipped', false);
+				this.$set(card, 'found', false);
+
+				// card.flipped = false;
+				// card.found = false;
+			});
+			
+			this.timeElapsed = 0;
 			this.turns = 0;
-			this.score = 0;
-			this.started = false;
-			this.startTime = 0;
-			
-			cards.forEach((card) => {
-				card.flipped = false;
-				card.found = false;
-			});
-			
-			this.cards = cards;
+			this.matchedPairs = 0;
 		},
-		
-		flippedCards() {
-			return _.filter(this.cards, card => card.flipped);
-		},
-		
-		sameFlippedCard() {
-			let flippedCards = this.flippedCards();
-			if (flippedCards.length == 2) {
-				if (flippedCards[0].name == flippedCards[1].name)
-					return true;
-			}
-		},
-		
-		setCardFounds() {
-			_.each(this.cards, (card) => {
-				if (card.flipped)
-					card.found = true;
-			});
-		},
-		
-		checkAllFound() {
-			let foundCards = _.filter(this.cards, card => card.found);
-			if (foundCards.length == this.cards.length)
-				return true;
-		},
-		
-		startGame() {
-			this.started = true;
-			this.startTime = moment();
-			
-			this.timer = setInterval(() => {
-				this.time = moment(moment().diff(this.startTime)).format("mm:ss");
-			}, 1000);
-		},
-		
-		finishGame() {
-			this.started = false;
-			clearInterval(this.timer);
-			let score = 1000 - (moment().diff(this.startTime, 'seconds') - CardTypes.length * 5) * 3 - (this.turns - CardTypes.length) * 5;
-			this.score = Math.max(score, 0);
-			this.showSplash = true;
-		},
-		
-		flipCard(card) {
-			if (card.found || card.flipped) return;
-			
-			if (!this.started) {
-				this.startGame();
-			}
-			
-			let flipCount = this.flippedCards().length;
-			if (flipCount == 0) {
-				card.flipped = !card.flipped;
-			}
-			else if (flipCount == 1) {
-				card.flipped = !card.flipped;
-				this.turns += 1;
+		flipCard(card) {		
+			//TODO: Logic for point updating etc
+			card.flipped = !card.flipped;
+			console.log(card.flipped);
+		},	
+		checkMatch() {
 
-				if (this.sameFlippedCard()) {
-					// Match!
-					this.flipBackTimer = setTimeout( ()=> {
-						this.clearFlipBackTimer();
-						this.setCardFounds();
-						this.clearFlips();
-
-						if (this.checkAllFound()) {
-							this.finishGame();
-						}	
-
-					}, 200);
-				}
-				else {
-					// Wrong match
-					this.flipBackTimer = setTimeout( ()=> {
-						this.clearFlipBackTimer();
-						this.clearFlips();
-					}, 1000);
-				}
-			}
 		},
-		clearFlips() {
-			_.map(this.cards, card => card.flipped = false);
-		},
-		clearFlipBackTimer() {
-			clearTimeout(this.flipBackTimer);
-			this.flipBackTimer = null;
-		}
 	},
 	created() {
 		this.resetGame();
-	}
-});
+	},
+})
