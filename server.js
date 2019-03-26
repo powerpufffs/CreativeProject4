@@ -25,8 +25,8 @@ const upload = multer({
   }
 });
 
-// Create a scheme for items in the museum: a title and a path to an image.
-// const itemSchema = new mongoose.Schema({
+// Create a scheme for players in the museum: a title and a path to an image.
+// const playerSchema = new mongoose.Schema({
 //   title: String,
 //   path: String,
 //   description: String,
@@ -38,8 +38,8 @@ const playerSchema = new mongoose.Schema({
     date: String,
 })
 
-// Create a model for items in the museum.
-// const Item = mongoose.model('Item', itemSchema);
+// Create a model for players in the museum.
+// const player = mongoose.model('player', playerSchema);
 const Player = mongoose.model('Player', playerSchema);
 
 // Upload a photo. Uses the multer middleware for the upload and then returns
@@ -54,27 +54,31 @@ app.post('/api/photos', upload.single('photo'), async (req, res) => {
   });
 });
 
-// Create a new item in the museum: takes a title and a path to an image.
+// Create a new player in the museum: takes a title and a path to an image.
 app.post('/api/players', async (req, res) => {
-  const item = new Item({
-    title: req.body.title,
-    path: req.body.path,
-    description: req.body.description
+  const player = new Player({
+    // title: req.body.title,
+    // path: req.body.path,
+    // description: req.body.description
+    name: req.body.name,
+    turns: req.body.turns,
+    duration: req.body.duration,
+    date: req.body.date,
   });
   try {
-    await item.save();
-    res.send(item);
+    await player.save();
+    res.send(player);
   } catch (error) {
     console.log(error);
     res.sendStatus(500);
   }
 });
 
-// Get a list of all of the items in the museum.
+// Get a list of all of the players in the museum.
 app.get('/api/players', async (req, res) => {
   try {
-    let items = await Item.find();
-    res.send(items);
+    let players = await player.find();
+    res.send(players);
   } catch (error) {
     console.log(error);
     res.sendStatus(500);
@@ -83,8 +87,8 @@ app.get('/api/players', async (req, res) => {
 
 app.delete('/api/players/:id', async (req, res) => {
   try {
-    let items = await Item.deleteOne({ _id: req.params.id });
-    res.send(items);
+    let players = await player.deleteOne({ _id: req.params.id });
+    res.send(players);
   } catch (error) {
     console.log(error);
     res.sendStatus(500);
@@ -93,10 +97,10 @@ app.delete('/api/players/:id', async (req, res) => {
 
 app.put('/api/players/:id', async (req, res) => {
   try {
-    let item = await Item.findOne({ _id: req.params.id });
-    item.title = req.body.title;
-    item.save();
-    res.send(item);
+    let player = await player.findOne({ _id: req.params.id });
+    player.title = req.body.title;
+    player.save();
+    res.send(player);
   } catch (error) {
     console.log(error);
     res.sendStatus(500);
