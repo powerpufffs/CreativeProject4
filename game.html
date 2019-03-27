@@ -2,113 +2,80 @@
 <html>
 
 <head>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-        crossorigin="anonymous">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="login.css">
     <title>The Game</title>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
-            aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item active">
-                    <a class="nav-link" href="index.html">Home</a>
-
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="login.html">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="game.html">The Game <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="leaderboard.html">Leaderboard</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="about.html">About the Game</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-    <div class="container">
-        <h1 class="textCentered">Welcome to the card game!</hj1>
-            <div class="generalPageWrapper">
-                <div id="app">
-                    <div class="cards">
-                        <div class="card cardFlip" v-for="card in cards" :class="cardClasses[card.name]" @click="flipCard(card)">
-                            <div v-if="card.flipped">
-                                <div class="back"></div>
-                            </div>
-                            <div v-else>
-                                <div class="front" :style="{ backgroundImage: 'url(' + card.image + ')' }"></div>
-                            </div>
-                        </div>
+    <div class="largeContainer">
+        <div id="app">
+            <div>
+                <h1>The Game</h1>
+                <div class="login">
+                    <button @click="openLogin" v-if="!loggedIn">Log In</button>
+                    <div v-if="loggedIn">
+                        <p :username="username">Welcome, {{ username }}</p>
+                        <button @click="logOut">Log Out</button>
                     </div>
                 </div>
             </div>
+            <div class="info">
+                <div :time="time" style="margin-bottom: 2rem">
+                    <span class="label">Time:</span>
+                    <span class="value">{{ time }} </span>
+                </div>
+                <div style="margin-bottom: 2rem" :turns="turns">
+                    <span class="label">Turns:</span>
+                    <span class="value">{{ turns }}</span>
+                </div>
+            </div>
 
-            <!-- <div class="generalPageWrapper">
-            <div class="cardLayoutWrapper">
-                <div class="flip-card">
-                    <div class="flip-card-inner" id="card1">
-                        <div class="flip-card-front">
-                            <img src="cardFace.png">
-                        </div>
-                        <div class="flip-card-back">
-                            <img src="Fox.svg" alt="Avatar" class="avatarStyling">
-                        </div>
-                    </div>
-                </div>
-                <div class="flip-card" id="card2">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front">
-                            <img src="cardFace.png">
-                        </div>
-                        <div class="flip-card-back">
-                            <img src="Bear.svg" alt="Avatar" class="avatarStyling">
-                        </div>
-                    </div>
-                </div>
-                <div class="flip-card" id="card3">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front">
-                            <img src="cardFace.png">
-                        </div>
-                        <div class="flip-card-back">
-                            <img src="Rabbit.svg" alt="Avatar" class="avatarStyling">
-                        </div>
-                    </div>
-                </div>
-                <div class="flip-card" id="card4">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front">
-                            <img src="cardFace.png">
+            <div id="cover" v-show="showLogin"></div>
+
+            <div class="grandWrapper" v-show="showLogin">
+                <div class="container">
+                    <div class="upper">
+                        <h1 id="loginTitle">Please sign in<button @click="closeLogin" class="closeLogin">&times</button></h1>
+                        
+                        <p id="loginWith">Log in with
+                            <button id="usernameButton" @click="logInWithUsername()">Username</button>
+                            <button id="emailButton" @click="logInWithEmail()">Email</button>
+                        </p>
+    
+                        <div class="usernameEmail" id="usernameEmail" v-show="showLogin">
+                            <label id="input" for="usernameEmailInput"></label>
+                            <span id='topInput'>
+                                <input type="text" id="usernameEmailInput" class="inputStyling" placeholder="Username" v-model="loginInput" v-if="loginType === 'username'">
+                                <input type="text" id="usernameEmailInput" class="inputStyling" placeholder="Email" v-model="loginInput" v-if="loginType === 'email'">
+                            </span> 
+                            <p id="validity"></p>
                         </div>
     
-                        <div class="flip-card-back">
-                            <img src="Mouse.svg" alt="Avatar" class="avatarStyling">
+                        <div class="password" id="passwordDiv" v-show="showLogin">
+                            <input type="password" id="pw" class="inputStyling" placeholder="Password">
+                        </div>
+                        <div id="emailMessage" :emailMessage="emailMessage" v-show="showEmailMessage">{{ emailMessage }}</div>
+                    </div>
+    
+                    <div class="lower">
+                        <div class="submit" id="logInDiv" v-show="showLogin">
+                            <button id="login" class="btn btn-primary" type='submit' value="Submit" @click="handleInput()">Log In</button>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        </div> -->
-    </div>
-    <footer><a href="https://github.com/powerpufffs/CreativeProject3.git">https://github.com/powerpufffs/CreativeProject3.git</a></footer>
 
+            <card v-for="card in CardTypes"></card>
+        </div>
+    </div>
+    
+    <footer><a href="https://github.com/powerpufffs/CreativeProject3.git">https://github.com/powerpufffs/CreativeProject3.git</a></footer>
+   
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.8/dist/vue.js"></script>
     <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
-        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
     <script src="/game.js"></script>
 </body>
 
