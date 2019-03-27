@@ -12,7 +12,7 @@ app.use(express.static('public'));
 const mongoose = require('mongoose');
 
 // connect to the database
-mongoose.connect('mongodb://localhost:27017/players', {
+mongoose.connect('mongodb://localhost:27017/games', {
   useNewUrlParser: true
 });
 
@@ -25,22 +25,17 @@ const upload = multer({
   }
 });
 
-// Create a scheme for players in the museum: a title and a path to an image.
-// const playerSchema = new mongoose.Schema({
-//   title: String,
-//   path: String,
-//   description: String,
-// });
-const playerSchema = new mongoose.Schema({
+// Create a scheme for games in the museum: a title and a path to an image.
+const gamesSchema = new mongoose.Schema({
     name: String,
     turns: Number,
     duration: Number,
     date: String,
 })
 
-// Create a model for players in the museum.
-// const player = mongoose.model('player', playerSchema);
-const Player = mongoose.model('Player', playerSchema);
+// Create a model for games in the museum.
+// const Game = mongoose.model('Game', gameschema);
+const Game = mongoose.model('Game', gamesSchema);
 
 // Upload a photo. Uses the multer middleware for the upload and then returns
 // the path where the photo is stored in the file system.
@@ -54,9 +49,9 @@ app.post('/api/photos', upload.single('photo'), async (req, res) => {
   });
 });
 
-// Create a new player in the museum: takes a title and a path to an image.
-app.post('/api/players', async (req, res) => {
-  const player = new Player({
+// Create a new Game in the museum: takes a title and a path to an image.
+app.post('/api/games', async (req, res) => {
+  const game = new Game({
     // title: req.body.title,
     // path: req.body.path,
     // description: req.body.description
@@ -66,41 +61,44 @@ app.post('/api/players', async (req, res) => {
     date: req.body.date,
   });
   try {
-    await player.save();
-    res.send(player);
+    await game.save();
+    res.send(game);
   } catch (error) {
     console.log(error);
     res.sendStatus(500);
   }
 });
 
-// Get a list of all of the players in the museum.
-app.get('/api/players', async (req, res) => {
+// Get a list of all of the games in the museum.
+app.get('/api/games', async (req, res) => {
   try {
-    let players = await player.find();
-    res.send(players);
+    let games = await Game.find();
+    res.send(games);
   } catch (error) {
     console.log(error);
     res.sendStatus(500);
   }
 });
 
-app.delete('/api/players/:id', async (req, res) => {
+app.delete('/api/games/:id', async (req, res) => {
   try {
-    let players = await player.deleteOne({ _id: req.params.id });
-    res.send(players);
+    let games = await Game.deleteOne({ _id: req.params.id });
+    res.send(games);
   } catch (error) {
     console.log(error);
     res.sendStatus(500);
   }
 });
 
-app.put('/api/players/:id', async (req, res) => {
+//TODO: Figure out whether we need a PUT
+app.put('/api/games/:id', async (req, res) => {
   try {
-    let player = await player.findOne({ _id: req.params.id });
-    player.title = req.body.title;
-    player.save();
-    res.send(player);
+    let game = await Game.findOne({ _id: req.params.id });
+    //
+    //
+    //
+    game.save();
+    res.send(game);
   } catch (error) {
     console.log(error);
     res.sendStatus(500);
