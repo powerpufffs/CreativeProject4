@@ -21,9 +21,9 @@
                 </div>
             </div>
             <div class="info">
-                <div :timeElapsed="timeElapsed" style="margin-bottom: 2rem">
+                <div :duration="duration" style="margin-bottom: 2rem">
                     <span class="label">Time Elapsed:</span>
-                    <span class="value">{{ timeElapsed }} </span>
+                    <span class="value">{{ duration }} seconds</span>
                 </div>
                 <div style="margin-bottom: 2rem" :turns="turns">
                     <span class="label">Turns:</span>
@@ -68,7 +68,7 @@
 
             <div class="container" v-if="!showLogin"><!--look into this. multiple containers??-->
                 <div class="generalPageWrapper">
-                    <div id="app">
+                    <div class="container">
                         <div class="cards">
                             <div class="card cardFlip" v-for="card in cards" :class="cardClasses[card.name]" @click="flipCard(card)">
                                 <div v-if="!card.flipped">

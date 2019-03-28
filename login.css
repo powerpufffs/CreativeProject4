@@ -26,20 +26,6 @@ body {
     background-color: #191C23;
 }
 
-.grandWrapper {
-    display: grid;
-    height: auto;
-    min-width: 800px;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    grid-template:
-    1fr
-    5fr
-    1fr
-    /   minmax(35%, 1fr) minmax(20%, 70%) minmax(35%, 1fr);
-}
-
 .container {
     background-color: transparent;
     grid-column-start: 2;

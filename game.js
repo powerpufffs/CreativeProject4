@@ -42,6 +42,8 @@ let app = new Vue({
 		emailMessage: "",
 		showEmailMessage: false,
 		timeElapsed: 0,
+		startTime: 0,
+		duration: 0,
 		turns: 0,
 		matchedPairs: 0,
 		disableClick: false,
@@ -49,14 +51,6 @@ let app = new Vue({
 		cards: [],
 		prevCardIndex: 0,
 		cardClasses: {},
-		CardTypes: [
-			{ name: "vue", description: "javascript structure language" },
-			{ name: "express", description: "good language" },
-			{ name: "mongo", description: "database" },
-			{ name: "nodejs", description: "other stuff" },
-			{ name: "webpack", description: "idk" },
-			{ name: "babel", description: "weird af" },
-		]
 	},
 	computed: {
 		totalPairs: function () {
@@ -143,18 +137,22 @@ let app = new Vue({
 			this.showEmailMessage = true;
 		},
 		resetGame() {
-			this.cards = this.shuffleCards();
+			this.cards = shuffleCards();
 			this.cards.forEach((card) => {
 				this.$set(card, 'flipped', false);
 				this.$set(card, 'found', false);
 			});
-			this.timeElapsed = 0;
+			this.startTime = 0;
 			this.turns = 0;
 			this.matchedPairs = 0;
 			this.secondFlip = false;
 			this.prevCardIndex = 0;
 		},
 		flipCard(card) {
+			if (this.turns == 0) {
+				this.startTime = new Date();
+				this.timer();
+			}
 			//is second flip
 			if (card === this.cards[this.prevCardIndex]) {
 				console.log("Pick a different card.");
@@ -180,15 +178,16 @@ let app = new Vue({
 					}
 					this.secondFlip = false;
 					this.disableClick = false;
+					if (this.matchedPairs == this.cards.length / 2) {
+						this.endGame();
+					}
 				}, 1000);
 			} else {
 				this.prevCardIndex = this.cards.indexOf(card);
 				this.secondFlip = true;
 			}
-			//when game is over
-			if (this.matchedPairs == this.cards.length() / 2) {
-				this.endGame();
-			}
+
+			this.turns++;
 		},
 		checkMatch(firstCard, secondCard) {
 			return ((firstCard.name === secondCard.name) ? true : false);
@@ -197,7 +196,17 @@ let app = new Vue({
 			this.file = event.target.files[0]
 		},
 		endGame() {
-			alert(`You Won! You completed the game in: ${ this.timeElapsed } seconds`)
+			let end = new Date();
+
+			alert(`You Won! You completed the game in: ${ Math.round((end - this.startTime) / 1000) } seconds`);
+			window.location = 'http://localhost:3002/leaderboard.html';
+		},
+		incrementTime() {
+			this.duration++;
+			this.timer();
+		},
+		timer() {
+			t = setTimeout(this.incrementTime, 1000);
 		},
 		async uploadPlayer() {
 			try {
@@ -251,11 +260,6 @@ let app = new Vue({
 				console.log(error);
 			}
 		},
-		shuffleCards: function () {
-			// let copy = CardTypes.concat(CardTypes);
-			return this.CardTypes.concat(this.CardTypes.map((card) => ({ name: card.name + '', image: card.image + '' })))
-				.sort(() => 0.5 - Math.random());
-		}
 	},
 	created() {
 		this.resetGame();
