@@ -21,9 +21,9 @@
                 </div>
             </div>
             <div class="info">
-                <div :time="time" style="margin-bottom: 2rem">
-                    <span class="label">Time:</span>
-                    <span class="value">{{ time }} </span>
+                <div :timeElapsed="timeElapsed" style="margin-bottom: 2rem">
+                    <span class="label">Time Elapsed:</span>
+                    <span class="value">{{ timeElapsed }} </span>
                 </div>
                 <div style="margin-bottom: 2rem" :turns="turns">
                     <span class="label">Turns:</span>
@@ -66,7 +66,16 @@
                 </div>
             </div>
 
-            <card v-for="card in CardTypes"></card>
+            <div class="card cardFlip" v-for="card in cards" :class="cardClasses[card.name]" @click="flipCard(card)">
+                <div v-if="!card.found">
+                    <div v-if="!card.flipped">
+                        <div class="back"></div>
+                    </div>
+                    <div v-else>
+                        <div class="front" :style="{ backgroundImage: 'url(' + card.image + ')' }"></div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     
