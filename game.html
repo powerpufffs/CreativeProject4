@@ -41,13 +41,11 @@
                 <div id="app">
                     <div class="cards">
                         <div class="card cardFlip" v-for="card in cards" :class="cardClasses[card.name]" @click="flipCard(card)">
-                            <div v-if="!card.found">
-                                <div v-if="!card.flipped">
-                                    <div class="back"></div>
-                                </div>
-                                <div v-else>
-                                    <div class="front" :style="{ backgroundImage: 'url(' + card.image + ')' }"></div>
-                                </div>
+                            <div v-if="!card.flipped">
+                                <div class="back"></div>
+                            </div>
+                            <div v-else>
+                                <div class="front" :style="{ backgroundImage: 'url(' + card.image + ')' }"></div>
                             </div>
                         </div>
                     </div>

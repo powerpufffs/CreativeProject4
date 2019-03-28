@@ -36,6 +36,7 @@ let app = new Vue({
 		timeElapsed: 0,
 		turns: 0,
 		matchedPairs: 0,
+		disableClick: false,
 		secondFlip: false,
 		cards: [],
 		prevCardIndex: 0,
@@ -69,23 +70,34 @@ let app = new Vue({
 				console.log("Pick a different card.");
 				return;
 			}
+			if (this.disableClick) {
+				console.log("click not allowed yet");
+				return;
+			}
+			card.flipped = true;
 			if (this.secondFlip) {
-				if (this.checkMatch(this.cards[this.prevCardIndex], card)) {
-					this.matchedPairs++;
-					this.cards[this.prevCardIndex].found = true;
-					card.found = true;
-					console.log("cards match!");
-				} else {
-					card.flipped = false;
-
-					this.cards[this.prevCardIndex].flipped = false;
-					console.log("cards don't match");
-				}
-				this.secondFlip = false;
+				this.disableClick = true;
+				setTimeout(() => {
+					if (this.checkMatch(this.cards[this.prevCardIndex], card)) {
+						this.matchedPairs++;
+						this.cards[this.prevCardIndex].found = true;
+						card.found = true;
+						console.log("cards match!");
+					} else {
+						card.flipped = false;
+						this.cards[this.prevCardIndex].flipped = false;
+						console.log("cards don't match");
+					}
+					this.secondFlip = false;
+					this.disableClick = false;
+				}, 1000);
 			} else {
 				this.prevCardIndex = this.cards.indexOf(card);
-				card.flipped = true;
 				this.secondFlip = true;
+			}
+			//when game is over
+			if (this.matchedPairs == this.cards.length() / 2) {
+				this.endGame();
 			}
 		},
 		checkMatch(firstCard, secondCard) {
@@ -93,6 +105,9 @@ let app = new Vue({
 		},
 		fileChanged(event) {
 			this.file = event.target.files[0]
+		},
+		endGame() {
+			alert(`You Won! You completed the game in: ${ this.timeElapsed } seconds`)
 		},
 		async uploadPlayer() {
 			try {
