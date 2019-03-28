@@ -31,10 +31,10 @@
                 </div>
             </div>
 
-            <div id="cover" v-show="showLogin"></div>
+            <div id="cover" v-if="showLogin"></div>
 
-            <div class="grandWrapper" v-show="showLogin">
-                <div class="container">
+            <div class="grandWrapper" v-if="showLogin">
+                <div class="container"><!--look into this. are there multiple containers?-->
                     <div class="upper">
                         <h1 id="loginTitle">Please sign in<button @click="closeLogin" class="closeLogin">&times</button></h1>
                         
@@ -66,21 +66,26 @@
                 </div>
             </div>
 
-            <div class="card cardFlip" v-for="card in cards" :class="cardClasses[card.name]" @click="flipCard(card)">
-                <div v-if="!card.found">
-                    <div v-if="!card.flipped">
-                        <div class="back"></div>
-                    </div>
-                    <div v-else>
-                        <div class="front" :style="{ backgroundImage: 'url(' + card.image + ')' }"></div>
+            <div class="container" v-if="!showLogin"><!--look into this. multiple containers??-->
+                <div class="generalPageWrapper">
+                    <div id="app">
+                        <div class="cards">
+                            <div class="card cardFlip" v-for="card in cards" :class="cardClasses[card.name]" @click="flipCard(card)">
+                                <div v-if="!card.flipped">
+                                    <div class="back"></div>
+                                </div>
+                                <div v-else>
+                                    <div class="front" :style="{ backgroundImage: 'url(' + card.image + ')' }"></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     
-    <footer><a href="https://github.com/powerpufffs/CreativeProject3.git">https://github.com/powerpufffs/CreativeProject3.git</a></footer>
-   
+    <footer><a href="https://github.com/powerpufffs/CreativeProject4.git">https://github.com/powerpufffs/CreativeProject4.git</a></footer>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.8/dist/vue.js"></script>
     <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
