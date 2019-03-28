@@ -26,7 +26,10 @@ let CardTypes = [{
 
 let shuffleCards = () => {
 	// let copy = CardTypes.concat(CardTypes);
-	return CardTypes.concat(CardTypes.map((card) => ({ name: card.name + '', image: card.image + '' })))
+	return CardTypes.concat(CardTypes.map((card) => ({
+			name: card.name + '',
+			image: card.image + ''
+		})))
 		.sort(() => 0.5 - Math.random());
 }
 
@@ -42,6 +45,14 @@ let app = new Vue({
 		cards: [],
 		prevCardIndex: 0,
 		cardClasses: {},
+		playerInfo: {
+			name: '',
+			email: '',
+			turns: '',
+			duration: '',
+			date: '',
+		},
+		gameRecord: [],
 	},
 	computed: {
 		totalPairs: function () {
@@ -64,6 +75,7 @@ let app = new Vue({
 			this.matchedPairs = 0;
 			this.secondFlip = false;
 			this.prevCardIndex = 0;
+			this.getGames;
 		},
 		flipCard(card) {
 			if (this.turns == 0) {
@@ -113,10 +125,11 @@ let app = new Vue({
 			this.file = event.target.files[0]
 		},
 		endGame() {
-			let end = new Date();
-
-			alert(`You Won! You completed the game in: ${ Math.round((end - this.startTime) / 1000) } seconds`);
-			window.location = 'http://localhost:3002/leaderboard.html';
+			alert(`You Won! You completed the game in: ${ this.duration } seconds`);
+			this.playerInfo.turns = this.turns;
+			this.playerInfo.duration = this.duration;
+			this.uploadPlayer();
+			// window.location = 'http://localhost:2000/leaderboard.html';
 		},
 		incrementTime() {
 			this.duration++;
@@ -127,56 +140,55 @@ let app = new Vue({
 		},
 		async uploadPlayer() {
 			try {
-				const formData = new FormData();
-				formData.append('photo', this.file, this.file.name)
-				let res = await axios.post('/api/players', {
+				let res = await axios.post('/api/games', {
 					name: req.body.name,
+					email: req.body.email,
 					turns: req.body.turns,
 					duration: req.body.duration,
 					date: req.body.date,
 				});
-				this.addItem = res.data;
+				this.gameRecord = res.data;
 			} catch (error) {
 				console.log(error);
 			}
+			console.log("uploading game");
 		},
-		async getplayers() {
+		async getGames() {
 			try {
-				let res = await axios.get("/api/players");
-				this.players = res.data;
+				let res = await axios.get("/api/games");
+				this.gameRecord = res.data;
 				return true;
 			} catch (error) {
 				console.log(error);
 			}
 		},
-		selectItem(item) {
-			console.log(item._id)
-			this.findTitle = "";
-			this.findItem = item;
-		},
-		async deleteItem(item) {
-			try {
-				console.log(item._id)
-				let response = await axios.delete("/api/players/" + item._id);
-				this.findItem = null;
-				this.getplayers();
-				return true;
-			} catch (error) {
-				console.log(error);
-			}
-		},
-		async editItem(item) {
-			try {
-				let response = await axios.put("/api/players/" + item._id, {
-					title: this.findItem.title,
-				});
-				this.findItem = null;
-				this.getplayers();
-				return true;
-			} catch (error) {
-				console.log(error);
-			}
-		},
+		// selectItem(item) {
+		// 	console.log(item._id)
+		// 	this.findTitle = "";
+		// 	this.findItem = item;
+		// },
+		// async deleteGame(item) {
+		// 	try {
+		// 		console.log(item._id)
+		// 		let response = await axios.delete("/api/games/" + item._id);
+		// 		this.findItem = null;
+		// 		this.getGames();
+		// 		return true;
+		// 	} catch (error) {
+		// 		console.log(error);
+		// 	}
+		// },
+		// async editGame(item) {
+		// 	try {
+		// 		let response = await axios.put("/api/games/" + item._id, {
+		// 			title: this.findItem.title,
+		// 		});
+		// 		this.getGames();
+		// 		return true;
+		// 	} catch (error) {
+		// 		console.log(error);
+		// 	}
+		// },
 	},
 	created() {
 		this.resetGame();

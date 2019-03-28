@@ -28,6 +28,7 @@ const upload = multer({
 // Create a scheme for games in the museum: a title and a path to an image.
 const gamesSchema = new mongoose.Schema({
     name: String,
+    email: String,
     turns: Number,
     duration: Number,
     date: String,
@@ -37,18 +38,6 @@ const gamesSchema = new mongoose.Schema({
 // const Game = mongoose.model('Game', gameschema);
 const Game = mongoose.model('Game', gamesSchema);
 
-// Upload a photo. Uses the multer middleware for the upload and then returns
-// the path where the photo is stored in the file system.
-app.post('/api/photos', upload.single('photo'), async (req, res) => {
-  // Just a safety check
-  if (!req.file) {
-    return res.sendStatus(400);
-  }
-  res.send({
-    path: "/images/" + req.file.filename
-  });
-});
-
 // Create a new Game in the museum: takes a title and a path to an image.
 app.post('/api/games', async (req, res) => {
   const game = new Game({
@@ -56,6 +45,7 @@ app.post('/api/games', async (req, res) => {
     // path: req.body.path,
     // description: req.body.description
     name: req.body.name,
+    email: req.body.email,
     turns: req.body.turns,
     duration: req.body.duration,
     date: req.body.date,
@@ -69,40 +59,51 @@ app.post('/api/games', async (req, res) => {
   }
 });
 
-// Get a list of all of the games in the museum.
+// Get a list of all of the items in the museum.
 app.get('/api/games', async (req, res) => {
   try {
-    let games = await Game.find();
-    res.send(games);
+    let gameRecord = await Game.find();
+    res.send(gameRecord);
   } catch (error) {
     console.log(error);
     res.sendStatus(500);
   }
 });
 
-app.delete('/api/games/:id', async (req, res) => {
-  try {
-    let games = await Game.deleteOne({ _id: req.params.id });
-    res.send(games);
-  } catch (error) {
-    console.log(error);
-    res.sendStatus(500);
-  }
-});
+// // Get a list of all of the games in the museum.
+// app.get('/api/games', async (req, res) => {
+//   try {
+//     let games = await Game.find();
+//     res.send(games);
+//   } catch (error) {
+//     console.log(error);
+//     res.sendStatus(500);
+//   }
+// });
 
-//TODO: Figure out whether we need a PUT
-app.put('/api/games/:id', async (req, res) => {
-  try {
-    let game = await Game.findOne({ _id: req.params.id });
-    //
-    //
-    //
-    game.save();
-    res.send(game);
-  } catch (error) {
-    console.log(error);
-    res.sendStatus(500);
-  }
-});
+// app.delete('/api/games/:id', async (req, res) => {
+//   try {
+//     let games = await Game.deleteOne({ _id: req.params.id });
+//     res.send(games);
+//   } catch (error) {
+//     console.log(error);
+//     res.sendStatus(500);
+//   }
+// });
 
-app.listen(3000, () => console.log('Server listening on port 3000!'));
+// //TODO: Figure out whether we need a PUT
+// app.put('/api/games/:id', async (req, res) => {
+//   try {
+//     let game = await Game.findOne({ _id: req.params.id });
+//     //
+//     //
+//     //
+//     game.save();
+//     res.send(game);
+//   } catch (error) {
+//     console.log(error);
+//     res.sendStatus(500);
+//   }
+// });
+
+app.listen(2000, () => console.log('Server listening on port 2000!'));
