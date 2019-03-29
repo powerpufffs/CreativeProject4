@@ -53,6 +53,7 @@ let app = new Vue({
 		disableClick: false,
 		secondFlip: false,
 		prevCardIndex: -1,
+		gameOver: false,
 		//Data
 		cards: [],
 		cardClasses: {},
@@ -69,6 +70,7 @@ let app = new Vue({
 	},
 	methods: {
 		logInWithEmail: function () {
+			this.emailMessage = "";
 			this.loginType = "email";
 			this.showInput = true;
 		},
@@ -101,10 +103,16 @@ let app = new Vue({
 				if (this.username === "morgan_hartman") {
 					this.loggedIn = true;
 					this.closeLoginBecauseLoggedIn();
+					if (this.gameOver) {
+						this.endGame();
+					}
 				}
 			} else if (this.loginType === "email") {
 				await this.processAPICall();
 				this.$nextTick(this.closeLoginBecauseLoggedIn());
+				if (this.gameOver) {
+					this.endGame();
+				}
 			} else {
 				console.log('error');
 				this.emailMessage = "Please enter a valid email address or username."
@@ -152,6 +160,7 @@ let app = new Vue({
 			this.secondFlip = false;
 			this.prevCardIndex = 0;
 			this.getGames;
+			this.gameOver = false;
 		},
 		flipCard(card) {
 			if (this.turns == 0) {
@@ -200,15 +209,20 @@ let app = new Vue({
 			this.file = event.target.files[0]
 		},
 		endGame() {
+			this.gameOver = true;
 			alert(`You Won! You completed the game in: ${ this.duration } seconds`);
-			let data = new Object();
-			data.name = this.name,
-			data.email = this.email,
-			data.turns = this.turns,
-			data.duration = this.duration,
-			data.date = Date(),
-			this.uploadPlayer(data);
-			window.location = 'http://localhost:2000/leaderboard.html';
+			if (this.loggedIn) {
+				let data = new Object();
+				data.name = this.name,
+				data.email = this.email,
+				data.turns = this.turns,
+				data.duration = this.duration,
+				data.date = Date(),
+				this.uploadPlayer(data);
+				window.location = 'http://localhost:2000/leaderboard.html';
+			} else {
+				this.showLogin = true;
+			}
 		},
 		incrementTime() {
 			this.duration++;

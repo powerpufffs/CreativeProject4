@@ -7,21 +7,18 @@ var leaderboard = new Vue({
         async getGames() {
 			try {
 				let res = await axios.get("/api/games");
-				this.gameRecord = res.data;
+				this.items = res.data;
 				return true;
 			} catch (error) {
 				console.log(error);
 			}
-        },
-        returnToGame: function() {
-            window.location = 'http://localhost:2000/game.html';
         }
     },
     computed: {
 
     },
     created() {
-      this.getItems();
+      this.getGames();
     },
   
   });
