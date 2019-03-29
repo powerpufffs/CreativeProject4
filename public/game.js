@@ -211,16 +211,6 @@ let app = new Vue({
 		endGame() {
 			this.gameOver = true;
 			alert(`You Won! You completed the game in: ${ this.duration } seconds`);
-<<<<<<< HEAD
-			let data = new Object();
-			data.name = this.name;
-			data.email = this.email;
-			data.turns = this.turns;
-			data.duration = this.duration;
-			data.date = Date(),
-			this.uploadPlayer(data);
-			window.location = 'http://localhost:2000/leaderboard.html';
-=======
 			if (this.loggedIn) {
 				let data = new Object();
 				data.name = this.name,
@@ -233,7 +223,6 @@ let app = new Vue({
 			} else {
 				this.showLogin = true;
 			}
->>>>>>> d6fee1013bf086eb3ce4dca7254085cfcbe8d8d9
 		},
 		incrementTime() {
 			this.duration++;
