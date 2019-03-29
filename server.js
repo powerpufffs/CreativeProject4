@@ -40,6 +40,8 @@ const Game = mongoose.model('Game', gamesSchema);
 
 // Create a new Game in the museum: takes a title and a path to an image.
 app.post('/api/games', async (req, res) => {
+  console.log("trying to send from server.js")
+  console.log(req)
   const game = new Game({
     // title: req.body.title,
     // path: req.body.path,

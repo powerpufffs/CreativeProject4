@@ -34,9 +34,9 @@
     display: grid;
     grid-template:
         minmax(5%, 1fr) 
-        minmax(80%, 90%) 
+        minmax(50%, 60%) 
         minmax(5%, 1fr) 
-        / minmax(5%, 1fr) minmax(80%, 90%) minmax(5%, 1fr);
+        / minmax(5%, 1fr) minmax(50%, 60%) minmax(5%, 1fr);
     justify-items: center;
     align-items: center;
 }
@@ -59,6 +59,12 @@ body {
     flex-direction: row;
     justify-content: space-evenly;
     flex-wrap: wrap;
+}
+
+#title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 /* Flip animations */

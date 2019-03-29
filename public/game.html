@@ -10,7 +10,7 @@
 <body>
     <div class="largeContainer">
         <div id="app">
-            <div>
+            <div id="title">
                 <h1>The Game</h1>
                 <div class="login">
                     <button @click="openLogin" v-if="!loggedIn">Log In</button>
@@ -19,18 +19,18 @@
                         <button @click="logOut">Log Out</button>
                     </div>
                 </div>
-            </div>
-            <div class="info">
-                <div :duration="duration" style="margin-bottom: 2rem">
-                    <span class="label">Time Elapsed:</span>
-                    <span class="value">{{ duration }} seconds</span>
+                <div class="info">
+                    <div :duration="duration" style="margin-bottom: 2rem">
+                        <span class="label">Time Elapsed:</span>
+                        <span class="value">{{ duration }} seconds</span>
+                    </div>
+                    <div style="margin-bottom: 2rem" :turns="turns">
+                        <span class="label">Turns:</span>
+                        <span class="value">{{ turns }}</span>
+                    </div>
                 </div>
-                <div style="margin-bottom: 2rem" :turns="turns">
-                    <span class="label">Turns:</span>
-                    <span class="value">{{ turns }}</span>
-                </div>
             </div>
-
+            
             <div id="cover" v-if="showLogin"></div>
 
             <div class="grandWrapper" v-if="showLogin">
@@ -90,6 +90,7 @@
     <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js" integrity="sha256-mpnrJ5DpEZZkwkE1ZgkEQQJW/46CSEh/STrZKOB/qoM=" crossorigin="anonymous"></script>
     <script src="/game.js"></script>
 </body>
 

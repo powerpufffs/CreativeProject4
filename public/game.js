@@ -36,6 +36,7 @@ let shuffleCards = () => {
 let app = new Vue({
 	el: '#app',
 	data: {
+		// log in related
 		showLogin: true,
 		loggedIn: false,
 		loginType: "email",
@@ -44,23 +45,17 @@ let app = new Vue({
 		email: "",
 		emailMessage: "",
 		showEmailMessage: false,
+		//game related
 		timeElapsed: 0,
-		startTime: 0,
 		duration: 0,
 		turns: 0,
 		matchedPairs: 0,
 		disableClick: false,
 		secondFlip: false,
+		prevCardIndex: -1,
+		//Data
 		cards: [],
-		prevCardIndex: 0,
 		cardClasses: {},
-		playerInfo: {
-			name: '',
-			email: '',
-			turns: '',
-			duration: '',
-			date: '',
-		},
 		gameRecord: [],
 	},
 	computed: {
@@ -73,42 +68,41 @@ let app = new Vue({
 		// },
 	},
 	methods: {
-		logInWithEmail: function() {
+		logInWithEmail: function () {
 			this.loginType = "email";
 			this.showInput = true;
 		},
-		logInWithUsername: function() {
+		logInWithUsername: function () {
 			this.emailMessage = "";
 			this.loginType = "username";
 			this.showInput = true;
 		},
-		closeLogin: function() {
+		closeLogin: function () {
 			this.showLogin = false;
 			this.emailMessage = "";
 			this.showEmailMessage = false;
 		},
-		closeLoginBecauseLoggedIn: function() {
-			if(this.loggedIn){
+		closeLoginBecauseLoggedIn: function () {
+			if (this.loggedIn) {
 				this.showLogin = false;
 				this.emailMessage = "";
 				this.showEmailMessage = false;
 			}
 		},
-		openLogin: function() {
+		openLogin: function () {
 			this.showLogin = true;
 		},
-		getLoggedIn: function() {
+		getLoggedIn: function () {
 			this.loggedIn = true;
 		},
-		handleInput: async function() {
-			if(this.loginType === "username") {
+		handleInput: async function () {
+			if (this.loginType === "username") {
 				this.username = this.loginInput;
 				if (this.username === "morgan_hartman") {
 					this.loggedIn = true;
 					this.closeLoginBecauseLoggedIn();
 				}
-			}
-			else if (this.loginType === "email") {
+			} else if (this.loginType === "email") {
 				await this.processAPICall();
 				this.$nextTick(this.closeLoginBecauseLoggedIn());
 			} else {
@@ -118,21 +112,21 @@ let app = new Vue({
 				this.showEmailMessage = true;
 			}
 		},
-		logOut: function() {
+		logOut: function () {
 			this.loggedIn = false;
 			this.loginInput = "";
 			this.username = "";
 		},
-		processAPICall: async function() {
+		processAPICall: async function () {
 			var _this = this;
 			this.email = this.loginInput;
 			console.log(`Email Input is ${this.email}.`);
 			const accessKey = "81a42f979a60a5020baa7b1ec7c058e5";
 			const url = "http://apilayer.net/api/check?access_key=" + accessKey + "&email=" + this.email;
 			await fetch(url)
-				.then(function(response) {
+				.then(function (response) {
 					return response.json();
-				}).then(function(json) {
+				}).then(function (json) {
 					console.log(json);
 					if (json.score >= 0.8 || json.format_valid === true) {
 						console.log("success");
@@ -153,7 +147,6 @@ let app = new Vue({
 				this.$set(card, 'flipped', false);
 				this.$set(card, 'found', false);
 			});
-			this.startTime = 0;
 			this.turns = 0;
 			this.matchedPairs = 0;
 			this.secondFlip = false;
@@ -162,7 +155,6 @@ let app = new Vue({
 		},
 		flipCard(card) {
 			if (this.turns == 0) {
-				this.startTime = new Date();
 				this.timer();
 			}
 			//is second flip
@@ -209,9 +201,13 @@ let app = new Vue({
 		},
 		endGame() {
 			alert(`You Won! You completed the game in: ${ this.duration } seconds`);
-			this.playerInfo.turns = this.turns;
-			this.playerInfo.duration = this.duration;
-			this.uploadPlayer();
+			let data = new Object();
+			data.name = this.name,
+			data.email = this.email,
+			data.turns = this.turns,
+			data.duration = this.duration,
+			data.date = Date(),
+			this.uploadPlayer(data);
 			// window.location = 'http://localhost:2000/leaderboard.html';
 		},
 		incrementTime() {
@@ -221,14 +217,14 @@ let app = new Vue({
 		timer() {
 			t = setTimeout(this.incrementTime, 1000);
 		},
-		async uploadPlayer() {
+		async uploadPlayer(game) {
 			try {
 				let res = await axios.post('/api/games', {
-					name: req.body.name,
-					email: req.body.email,
-					turns: req.body.turns,
-					duration: req.body.duration,
-					date: req.body.date,
+					name: game.name,
+					email: game.email,
+					turns: game.turns,
+					duration: game.duration,
+					date: game.date,
 				});
 				this.gameRecord = res.data;
 			} catch (error) {
