@@ -1,25 +1,9 @@
 var leaderboard = new Vue({
-  el: '#leaderboard',
-  data: {
-    items: [],
-  },
-  methods: {
-    async getGames() {
-      try {
-        let res = await axios.get("/api/games");
-        this.items = res.data;
-        // for (game in res.body)
-        // let game = new Object();
-        // game.name = res.data.name;
-        // game.turns = res.data.turns;
-        // game.duration = res.data.duration;
-        // game.date = res.data.date;
-        // this.items.push
-        return true;
-      } catch (error) {
-        console.log(error);
-      }
+    el: '#leaderboard',
+    data: {
+        items: [],
     },
+<<<<<<< HEAD
     returnToGame: function () {
       window.location = 'http://localhost:2000/game.html';
     }
@@ -32,3 +16,31 @@ var leaderboard = new Vue({
   },
 
 });
+=======
+    methods: {
+        async getGames() {
+			try {
+				let res = await axios.get("/api/games");
+				this.items = res.data;
+				return true;
+			} catch (error) {
+				console.log(error);
+			}
+        }
+    },
+    computed: {
+        shortenedItems: function() {
+            if (this.items.length > 10) {
+                return;
+            } else {
+                var shortenedItemsArray = this.items;
+                return shortenedItemsArray;
+            }
+        }
+    },
+    created() {
+      this.getGames();
+    },
+  
+  });
+>>>>>>> cd276328d72cfea54de121487df5e063cf2daa9f
