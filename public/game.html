@@ -14,6 +14,7 @@
                 <h1>The Game</h1>
                 <div class="login">
                     <button @click="openLogin" v-if="!loggedIn">Log In</button>
+                    <a href="/leaderboard.html"><button>Leaderboard</button></a>
                     <div v-if="loggedIn">
                         <p :username="username">Welcome, {{ username }}</p>
                         <button @click="logOut">Log Out</button>
@@ -38,24 +39,24 @@
                     <div class="upper">
                         <h1 id="loginTitle">Please sign in<button @click="closeLogin" class="closeLogin">&times</button></h1>
                         
-                        <p id="loginWith">Log in with
-                            <button id="usernameButton" @click="logInWithUsername()">Username</button>
-                            <button id="emailButton" @click="logInWithEmail()">Email</button>
+                        <p id="loginWith">Log in with Email Address
+                            <!-- <button id="usernameButton" @click="logInWithUsername()">Username</button> -->
+                            <!-- <button id="emailButton" @click="logInWithEmail()">Email</button> -->
                         </p>
     
-                        <div class="usernameEmail" id="usernameEmail" v-show="showLogin">
+                        <div class="usernameEmail" id="usernameEmail" v-if="showLogin">
                             <label id="input" for="usernameEmailInput"></label>
                             <span id='topInput'>
-                                <input type="text" id="usernameEmailInput" class="inputStyling" placeholder="Username" v-model="loginInput" v-if="loginType === 'username'">
+                                <!-- <input type="text" id="usernameEmailInput" class="inputStyling" placeholder="Username" v-model="loginInput" v-if="loginType === 'username'"> -->
                                 <input type="text" id="usernameEmailInput" class="inputStyling" placeholder="Email" v-model="loginInput" v-if="loginType === 'email'">
                             </span> 
                             <p id="validity"></p>
                         </div>
     
-                        <div class="password" id="passwordDiv" v-show="showLogin">
+                        <div class="password" id="passwordDiv" v-if="showLogin">
                             <input type="password" id="pw" class="inputStyling" placeholder="Password">
                         </div>
-                        <div id="emailMessage" :emailMessage="emailMessage" v-show="showEmailMessage">{{ emailMessage }}</div>
+                        <div id="emailMessage" :emailMessage="emailMessage" v-if="showEmailMessage">{{ emailMessage }}</div>
                     </div>
     
                     <div class="lower">

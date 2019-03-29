@@ -20,6 +20,7 @@ var leaderboard = new Vue({
         console.log(error);
       }
     },
+<<<<<<< HEAD
     returnToGame: function () {
       window.location = 'http://localhost:2000/game.html';
     }
@@ -32,3 +33,24 @@ var leaderboard = new Vue({
   },
 
 });
+=======
+    methods: {
+        async getGames() {
+			try {
+				let res = await axios.get("/api/games");
+				this.items = res.data;
+				return true;
+			} catch (error) {
+				console.log(error);
+			}
+        }
+    },
+    computed: {
+
+    },
+    created() {
+      this.getGames();
+    },
+  
+  });
+>>>>>>> d6fee1013bf086eb3ce4dca7254085cfcbe8d8d9
