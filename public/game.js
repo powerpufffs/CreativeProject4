@@ -208,7 +208,7 @@ let app = new Vue({
 			data.duration = this.duration,
 			data.date = Date(),
 			this.uploadPlayer(data);
-			// window.location = 'http://localhost:2000/leaderboard.html';
+			window.location = 'http://localhost:2000/leaderboard.html';
 		},
 		incrementTime() {
 			this.duration++;
@@ -241,33 +241,33 @@ let app = new Vue({
 				console.log(error);
 			}
 		},
-		// selectItem(item) {
-		// 	console.log(item._id)
-		// 	this.findTitle = "";
-		// 	this.findItem = item;
-		// },
-		// async deleteGame(item) {
-		// 	try {
-		// 		console.log(item._id)
-		// 		let response = await axios.delete("/api/games/" + item._id);
-		// 		this.findItem = null;
-		// 		this.getGames();
-		// 		return true;
-		// 	} catch (error) {
-		// 		console.log(error);
-		// 	}
-		// },
-		// async editGame(item) {
-		// 	try {
-		// 		let response = await axios.put("/api/games/" + item._id, {
-		// 			title: this.findItem.title,
-		// 		});
-		// 		this.getGames();
-		// 		return true;
-		// 	} catch (error) {
-		// 		console.log(error);
-		// 	}
-		// },
+		selectItem(item) {
+			console.log(item._id)
+			this.findTitle = "";
+			this.findItem = item;
+		},
+		async deleteGame(item) {
+			try {
+				console.log(item._id)
+				let response = await axios.delete("/api/games/" + item._id);
+				this.findItem = null;
+				this.getGames();
+				return true;
+			} catch (error) {
+				console.log(error);
+			}
+		},
+		async editGame(item) {
+			try {
+				let response = await axios.put("/api/games/" + item._id, {
+					title: this.findItem.title,
+				});
+				this.getGames();
+				return true;
+			} catch (error) {
+				console.log(error);
+			}
+		},
 	},
 	created() {
 		this.resetGame();

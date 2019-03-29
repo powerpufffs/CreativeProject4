@@ -10,6 +10,20 @@ footer {
     background-color: #8A96A3;
 }
 
+div.login {
+    margin: 1rem;
+}
+h1#loginTitle {
+    vertical-align: middle;
+}
+
+button.closeLogin {
+    margin: .75rem;
+    height: 1.5rem;
+    width: 1.5rem;
+    float: right;
+}
+
 a {
     color: #6F777D;
     text-decoration: none;
