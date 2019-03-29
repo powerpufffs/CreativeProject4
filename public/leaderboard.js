@@ -15,7 +15,14 @@ var leaderboard = new Vue({
         }
     },
     computed: {
-
+        shortenedItems: function() {
+            if (this.items.length > 10) {
+                
+            } else {
+                var shortenedItemsArray = this.items;
+                return shortenedItemsArray;
+            }
+        }
     },
     created() {
       this.getGames();
