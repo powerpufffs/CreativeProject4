@@ -1,32 +1,44 @@
 <!DOCTYPE html>
 <html>
+
 <head>
       <link rel="stylesheet" href="login.css">
       <link rel="stylesheet" href="styles.css">
       <title>Leaderboard</title>
 </head>
-<body style="padding: 5%">
-      <div id="leaderboard">
-            <h1>Recent Games</h1>
-            <ol>
-                  <li v-for="item in items" :key="item" :item="item">{{ item }}</li>
-            </ol>
 
-            <h1>Leaderboard</h1>
-
-            <h3>All Time Highest Scores</h3>
-            <ol>
-                  <li>Chuck Norris - 0 - 0:00</li>
-                  <li>Bobby Flay - 10 - 2:00</li>
-                  <li>powerpufffs - 11 - 2:01</li>
-            </ol>
-
-            <!-- <h3>Personal Bests</h3>
-            <ol>
-                  <li>11 - 2:01 - 1/30/19</li>
-                  <li>17 - 3:04 - 1/30/19</li>
-                  <li>30 - 5:17 - 1/31/19</li>
-            </ol> -->
+<body>
+      <div class="outerGrid">
+            <div id="leaderboard">
+                  <h1>Recent Games</h1>
+                  <ol>
+                        <div v-for="item in items" :key="item" :item="item">
+                              <li>
+                                    Name: {{ item.name }} <br>
+                                    Turns: {{ item.turns }} <br>
+                                    Duration: {{ item.duration }} <br>
+                                    Date: {{ item.date }} <br>
+                              </li>
+                        </div>
+                  </ol>
+      
+                  <h1>Leaderboard</h1>
+      
+                  <h3>All Time Highest Scores</h3>
+                  <ol>
+                        <li>Chuck Norris - 0 - 0:00</li>
+                        <li>Bobby Flay - 10 - 2:00</li>
+                        <li>powerpufffs - 11 - 2:01</li>
+                  </ol>
+      
+                  <!-- <h3>Personal Bests</h3>
+                              <ol>
+                                    <li>11 - 2:01 - 1/30/19</li>
+                                    <li>17 - 3:04 - 1/30/19</li>
+                                    <li>30 - 5:17 - 1/31/19</li>
+                              </ol> -->
+            </div>   
+            <a href="/game.html"><button>Return to the Game</button></a>
       </div>
 
       <a href="/game.html"><button>Return to the Game</button></a>
@@ -38,4 +50,5 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js" integrity="sha256-mpnrJ5DpEZZkwkE1ZgkEQQJW/46CSEh/STrZKOB/qoM=" crossorigin="anonymous"></script>
       <script src="/leaderboard.js"></script>
 </body>
+
 </html>

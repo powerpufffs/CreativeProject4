@@ -1,7 +1,7 @@
 var leaderboard = new Vue({
     el: '#leaderboard',
     data: {
-      items: [],
+        items: [],
     },
     methods: {
         async getGames() {
@@ -17,7 +17,7 @@ var leaderboard = new Vue({
     computed: {
         shortenedItems: function() {
             if (this.items.length > 10) {
-                
+                return;
             } else {
                 var shortenedItemsArray = this.items;
                 return shortenedItemsArray;
