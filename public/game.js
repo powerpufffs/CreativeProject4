@@ -202,10 +202,10 @@ let app = new Vue({
 		endGame() {
 			alert(`You Won! You completed the game in: ${ this.duration } seconds`);
 			let data = new Object();
-			data.name = this.name,
-			data.email = this.email,
-			data.turns = this.turns,
-			data.duration = this.duration,
+			data.name = this.name;
+			data.email = this.email;
+			data.turns = this.turns;
+			data.duration = this.duration;
 			data.date = Date(),
 			this.uploadPlayer(data);
 			window.location = 'http://localhost:2000/leaderboard.html';
