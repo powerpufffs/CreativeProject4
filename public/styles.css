@@ -47,7 +47,7 @@
     align-items: center;
 }
 
-body, html {
+body {
     color: #8A96A3;
     background-color: #191C23;
     height: 100%; 
@@ -155,28 +155,4 @@ img.fox {
 
  .textCentered {
     text-align: center;
- }
-
-
- /* leaderboard page */
-
- .outerGrid {
-    display: grid;
-    grid-template:
-    ". . ."       minmax(10%,1fr)
-    ". body ."    minmax(50%, 80%)
-    ". . ."       minmax(10%,1fr) / minmax(30%,1fr) minmax(50%, 60%) minmax(30%,1fr);
- }
-
- #leaderboard {
-    grid-column-start: 2;
-    grid-row-start: 2;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
- }
-
- .leftJustified {
-    align-self: flex-start;
  }

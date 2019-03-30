@@ -4,7 +4,7 @@ let CardTypes = [{
 	},
 	{
 		name: "express",
-		image: "https://coligo.io/images/express.svg"
+		image: "https://cdn-images-1.medium.com/max/871/1*d2zLEjERsrs1Rzk_95QU9A.png"
 	},
 	{
 		name: "mongo",
@@ -20,7 +20,7 @@ let CardTypes = [{
 	},
 	{
 		name: "babel",
-		image: "https://babeljs.io/images/logo.svg"
+		image: "https://ih0.redbubble.net/image.370343333.1917/flat,550x550,075,f.jpg"
 	},
 ];
 

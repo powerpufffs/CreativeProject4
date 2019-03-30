@@ -83,15 +83,15 @@ app.get('/api/games', async (req, res) => {
 //   }
 // });
 
-// app.delete('/api/games/:id', async (req, res) => {
-//   try {
-//     let games = await Game.deleteOne({ _id: req.params.id });
-//     res.send(games);
-//   } catch (error) {
-//     console.log(error);
-//     res.sendStatus(500);
-//   }
-// });
+app.delete('/api/games/:id', async (req, res) => {
+  try {
+    let games = await Game.deleteOne({ _id: req.params.id });
+    res.send(games);
+  } catch (error) {
+    console.log(error);
+    res.sendStatus(500);
+  }
+});
 
 // //TODO: Figure out whether we need a PUT
 // app.put('/api/games/:id', async (req, res) => {

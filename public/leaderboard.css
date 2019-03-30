@@ -29,3 +29,11 @@
  .leftJustified {
     align-self: flex-start;
  }
+
+ #thing {
+    color: white;
+ }
+ 
+ .title {
+    font-size: 4rem;
+ }

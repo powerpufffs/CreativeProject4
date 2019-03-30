@@ -31,47 +31,54 @@
                     </div>
                 </div>
             </div>
-            
+
             <div id="cover" v-if="showLogin"></div>
 
             <div class="grandWrapper" v-if="showLogin">
-                <div class="container"><!--look into this. are there multiple containers?-->
+                <div class="container">
+                    <!--look into this. are there multiple containers?-->
                     <div class="upper">
-                        <h1 id="loginTitle">Please sign in<button @click="closeLogin" class="closeLogin">&times</button></h1>
-                        
+                        <h1 id="loginTitle">Please sign in<button @click="closeLogin" class="closeLogin">&times</button>
+                        </h1>
+
                         <p id="loginWith">Log in with Email Address
                             <!-- <button id="usernameButton" @click="logInWithUsername()">Username</button> -->
                             <!-- <button id="emailButton" @click="logInWithEmail()">Email</button> -->
                         </p>
-    
+
                         <div class="usernameEmail" id="usernameEmail" v-if="showLogin">
                             <label id="input" for="usernameEmailInput"></label>
                             <span id='topInput'>
                                 <!-- <input type="text" id="usernameEmailInput" class="inputStyling" placeholder="Username" v-model="loginInput" v-if="loginType === 'username'"> -->
-                                <input type="text" id="usernameEmailInput" class="inputStyling" placeholder="Email" v-model="loginInput" v-if="loginType === 'email'">
-                            </span> 
+                                <input type="text" id="usernameEmailInput" class="inputStyling" placeholder="Email"
+                                    v-model="loginInput" v-if="loginType === 'email'">
+                            </span>
                             <p id="validity"></p>
                         </div>
-    
+
                         <div class="password" id="passwordDiv" v-if="showLogin">
                             <input type="password" id="pw" class="inputStyling" placeholder="Password">
                         </div>
-                        <div id="emailMessage" :emailMessage="emailMessage" v-if="showEmailMessage">{{ emailMessage }}</div>
+                        <div id="emailMessage" :emailMessage="emailMessage" v-if="showEmailMessage">{{ emailMessage }}
+                        </div>
                     </div>
-    
+
                     <div class="lower">
                         <div class="submit" id="logInDiv" v-show="showLogin">
-                            <button id="login" class="btn btn-primary" type='submit' value="Submit" @click="handleInput()">Log In</button>
+                            <button id="login" class="btn btn-primary" type='submit' value="Submit"
+                                @click="handleInput()">Log In</button>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="container" v-if="!showLogin"><!--look into this. multiple containers??-->
+            <div class="container" v-if="!showLogin">
+                <!--look into this. multiple containers??-->
                 <div class="generalPageWrapper">
                     <div class="container">
                         <div class="cards">
-                            <div class="card cardFlip" v-for="card in cards" :class="cardClasses[card.name]" @click="flipCard(card)">
+                            <div class="card cardFlip" v-for="card in cards" :class="cardClasses[card.name]"
+                                @click="flipCard(card)">
                                 <div v-if="!card.flipped">
                                     <div class="back"></div>
                                 </div>
@@ -83,15 +90,25 @@
                     </div>
                 </div>
             </div>
+            <footer>
+                <a href="https://github.com/powerpufffs/CreativeProject4.git">https://github.com/powerpufffs/CreativeProject4.git</a>
+            </footer>
         </div>
     </div>
-    
-    <footer><a href="https://github.com/powerpufffs/CreativeProject4.git">https://github.com/powerpufffs/CreativeProject4.git</a></footer>
+
+    <footer>
+        <a id="thing" href="https://github.com/powerpufffs/CreativeProject4.git">https://github.com/powerpufffs/CreativeProject4.git</a>
+    </footer>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.8/dist/vue.js"></script>
     <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js" integrity="sha256-mpnrJ5DpEZZkwkE1ZgkEQQJW/46CSEh/STrZKOB/qoM=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"
+        integrity="sha256-mpnrJ5DpEZZkwkE1ZgkEQQJW/46CSEh/STrZKOB/qoM=" crossorigin="anonymous"></script>
     <script src="/game.js"></script>
 </body>
 
